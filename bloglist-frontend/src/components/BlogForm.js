@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import blogService from '../services/blogs'
 import blogs from '../services/blogs';
+import Togglable from './Togglable'
 
 const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => {
   const [newTitle, setNewTitle] = useState('')
@@ -37,7 +38,7 @@ const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => 
   }
 
   return (
-    <div>
+    <Togglable buttonLabel="new blog">
       <h2>Luo uusi blogi</h2>
       <form onSubmit={createBlog}>
         <div>Author<input
@@ -54,7 +55,7 @@ const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => 
         /></div>
         <button type="submit">tallenna</button>
       </form>
-    </div>
+    </Togglable>
   )
 }
 
