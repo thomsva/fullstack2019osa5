@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import blogService from '../services/blogs'
 import blogs from '../services/blogs';
 
-const BlogForm = ({ blogs, setBlogs }) => {
+const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => {
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
   const [newUrl, setNewUrl] = useState('')
@@ -21,6 +21,18 @@ const BlogForm = ({ blogs, setBlogs }) => {
         setNewTitle('')
         setNewUrl('')
         setBlogs(blogs.concat(response))
+        setNotification('lisääminen onnistui, blogeja yhteensä: ' + blogs.length + 'kpl')
+        setNotificationType('info')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
+      })
+      .catch(error => {
+        setNotification('blogin lisääminen epäonnistui')
+        setNotificationType('error')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
       })
   }
 
