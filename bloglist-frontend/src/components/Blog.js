@@ -71,8 +71,8 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) =>
 
   return (
     <div className='blog'>
-      <div onClick={toggleShowDetails}><h2>{blog.title} by {blog.author}</h2></div>
-      <div style={details}>
+      <div onClick={toggleShowDetails}><h2 className='title'>{blog.title} by {blog.author}</h2></div>
+      <div style={details} className='details'>
         <div><a href={blog.url}>{blog.url}</a></div>
         <div>likes: {blog.likes} <button onClick={handleLike}>like</button> </div>
         <div>added by {extractUserName(blog.user)}</div>
