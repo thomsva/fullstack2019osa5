@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Togglable from './Togglable'
 import blogService from "../services/blogs"
 
 const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) => {
@@ -68,7 +67,7 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) =>
   }
 
   const details = { display: showDetails ? '' : 'none' }
-  const showForOwner = { display: (blog.user.name == user.name) ? '' : 'none' }
+  const showForOwner = { display: (blog.user.name === user.name) ? '' : 'none' }
 
   return (
     <div className='blog'>
