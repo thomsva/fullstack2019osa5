@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Togglable from './Togglable'
 import blogService from "../services/blogs"
 
-const Blog = ({ blog, setBlogs, setNotification, setNotificationType }) => {
+const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const extractUserName = (user) => {
@@ -68,6 +68,7 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType }) => {
   }
 
   const details = { display: showDetails ? '' : 'none' }
+  const showForOwner = { display: (blog.user.name == user.name) ? '' : 'none' }
 
   return (
     <div className='blog'>
@@ -76,7 +77,7 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType }) => {
         <div><a href={blog.url}>{blog.url}</a></div>
         <div>likes: {blog.likes} <button onClick={handleLike}>like</button> </div>
         <div>added by {extractUserName(blog.user)}</div>
-        <button onClick={handleRemove}>remove</button>
+        <button onClick={handleRemove} style={showForOwner}>remove</button>
       </div>
     </div >
   )

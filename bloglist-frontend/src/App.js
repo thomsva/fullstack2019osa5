@@ -88,7 +88,7 @@ const App = () => {
         <button onClick={handleLogout}>log out</button>
       </div>
       <BlogForm blogs={blogs} setBlogs={setBlogs} setNotification={setNotification} setNotificationType={setNotificationType} />
-      <BlogList blogs={blogs} setBlogs={setBlogs} setNotification={setNotification} setNotificationType={setNotificationType} />
+      <BlogList blogs={blogs} setBlogs={setBlogs} setNotification={setNotification} setNotificationType={setNotificationType} user={user} />
     </div>
   )
 }
