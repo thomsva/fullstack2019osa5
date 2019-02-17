@@ -22,7 +22,8 @@ const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => 
         setNewTitle('')
         setNewUrl('')
         setBlogs(blogs.concat(response))
-        setNotification('lisääminen onnistui, blogeja yhteensä: ' + blogs.length + 'kpl')
+        setNotification('lisääminen onnistui')
+        console.log('blogs', blogs)
         setNotificationType('info')
         setTimeout(() => {
           setNotification(null)

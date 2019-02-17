@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Togglable from './Togglable'
 import blogService from "../services/blogs"
 
-const Blog = ({ blog, setBlogs }) => {
+const Blog = ({ blog, setBlogs, setNotification, setNotificationType }) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const extractUserName = (user) => {
@@ -25,20 +25,58 @@ const Blog = ({ blog, setBlogs }) => {
         blogService.getAll().then(blogs =>
           setBlogs(blogs)
         )
+        setNotification('tykkäys lisätty')
+        setNotificationType('info')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
       })
+      .catch(error => {
+        setNotification('tykkäyksen lisääminen epäonnistui')
+        setNotificationType('error')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
+      })
+  }
 
-
+  const handleRemove = () => {
+    if (window.confirm('remove blog ' + blog.title + ' by ' + blog.author + '?')) {
+      blogService
+        .remove(blog.id)
+        .then((response) => {
+          console.log('response', response)
+        })
+        .then(() => {
+          blogService.getAll().then(blogs =>
+            setBlogs(blogs)
+          )
+          setNotification('poistaminen onnistui')
+          setNotificationType('info')
+          setTimeout(() => {
+            setNotification(null)
+          }, 2000)
+        })
+        .catch(error => {
+          setNotification('blogin poistaminen epäonnistui')
+          setNotificationType('error')
+          setTimeout(() => {
+            setNotification(null)
+          }, 2000)
+        })
+    }
   }
 
   const details = { display: showDetails ? '' : 'none' }
 
   return (
     <div className='blog'>
-      <div onClick={toggleShowDetails}>{blog.title} by {blog.author}</div>
+      <div onClick={toggleShowDetails}><h2>{blog.title} by {blog.author}</h2></div>
       <div style={details}>
         <div><a href={blog.url}>{blog.url}</a></div>
         <div>likes: {blog.likes} <button onClick={handleLike}>like</button> </div>
         <div>added by {extractUserName(blog.user)}</div>
+        <button onClick={handleRemove}>remove</button>
       </div>
     </div >
   )
