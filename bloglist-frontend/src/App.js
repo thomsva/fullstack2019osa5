@@ -39,8 +39,8 @@ const App = () => {
       blogService.setToken(user.token)
       window.localStorage.setItem('loggedInUser', JSON.stringify(user))
       setUser(user)
-      //setUsername('')
-      //setPassword('')
+      username.reset()
+      password.reset()
       setNotification('tervetuloa käyttäjä ' + user.name)
       setNotificationType('info')
       setTimeout(() => {
