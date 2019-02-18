@@ -29,7 +29,7 @@ const BlogForm = ({ blogs, setBlogs, setNotification, setNotificationType }) => 
           setNotification(null)
         }, 2000)
       })
-      .catch(error => {
+      .catch(() => {
         setNotification('blogin lisääminen epäonnistui')
         setNotificationType('error')
         setTimeout(() => {

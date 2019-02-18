@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import blogService from "../services/blogs"
+import blogService from '../services/blogs'
 
 const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const extractUserName = (user) => {
-    if (user == null) return 'unknown'
+    if (user === null) return 'unknown'
     return user.name
   }
 
@@ -30,7 +30,7 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) =>
           setNotification(null)
         }, 2000)
       })
-      .catch(error => {
+      .catch(() => {
         setNotification('tykkäyksen lisääminen epäonnistui')
         setNotificationType('error')
         setTimeout(() => {
@@ -56,7 +56,7 @@ const Blog = ({ blog, setBlogs, setNotification, setNotificationType, user }) =>
             setNotification(null)
           }, 2000)
         })
-        .catch(error => {
+        .catch(() => {
           setNotification('blogin poistaminen epäonnistui')
           setNotificationType('error')
           setTimeout(() => {
